@@ -12,3 +12,8 @@
 // Layout
 @import "./core/layout/base/layout";
 @import "layout/layout";
+
+// Define CSS Variables
+:root {
+    --bs-stepper-icon-bg-color-current: #50CD89;
+}

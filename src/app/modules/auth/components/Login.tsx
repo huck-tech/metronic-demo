@@ -56,172 +56,223 @@ export function Login() {
   })
 
   return (
-    <form
-      className='form w-100'
-      onSubmit={formik.handleSubmit}
-      noValidate
-      id='kt_login_signin_form'
-    >
-      {/* begin::Heading */}
-      <div className='text-center mb-11'>
-        <h1 className='text-gray-900 fw-bolder mb-3'>Sign In</h1>
-        <div className='text-gray-500 fw-semibold fs-6'>Your Social Campaigns</div>
-      </div>
-      {/* begin::Heading */}
+    <div className='d-flex flex-column flex-lg-row flex-column-fluid h-100'>
+      {/* begin::Body */}
+      <div className='d-flex flex-column flex-lg-row-fluid w-lg-50 p-10 order-2'>
+        {/* begin::Form */}
+        <div className='d-flex flex-center flex-column flex-lg-row-fluid'>
+          {/* begin::Wrapper */}
+          <div className='w-lg-500px p-10'>
+          <form
+              className='form w-100'
+              onSubmit={formik.handleSubmit}
+              noValidate
+              id='kt_login_signin_form'
+            >
+              {/* begin::Heading */}
+              <div className='text-center mb-11'>
+                <h1 className='text-gray-900 fw-bolder mb-3'>Sign In</h1>
+                <div className='text-gray-500 fw-semibold fs-6'>Your Social Campaigns</div>
+              </div>
+              {/* begin::Heading */}
 
-      {/* begin::Login options */}
-      <div className='row g-3 mb-9'>
-        {/* begin::Col */}
-        <div className='col-md-6'>
-          {/* begin::Google link */}
-          <a
-            href='#'
-            className='btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100'
-          >
-            <img
-              alt='Logo'
-              src={toAbsoluteUrl('media/svg/brand-logos/google-icon.svg')}
-              className='h-15px me-3'
-            />
-            Sign in with Google
-          </a>
-          {/* end::Google link */}
-        </div>
-        {/* end::Col */}
+              {/* begin::Login options */}
+              <div className='row g-3 mb-9'>
+                {/* begin::Col */}
+                <div className='col-md-6'>
+                  {/* begin::Google link */}
+                  <a
+                    href='#'
+                    className='btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100'
+                  >
+                    <img
+                      alt='Logo'
+                      src={toAbsoluteUrl('media/svg/brand-logos/google-icon.svg')}
+                      className='h-15px me-3'
+                    />
+                    Sign in with Google
+                  </a>
+                  {/* end::Google link */}
+                </div>
+                {/* end::Col */}
 
-        {/* begin::Col */}
-        <div className='col-md-6'>
-          {/* begin::Google link */}
-          <a
-            href='#'
-            className='btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100'
-          >
-            <img
-              alt='Logo'
-              src={toAbsoluteUrl('media/svg/brand-logos/apple-black.svg')}
-              className='theme-light-show h-15px me-3'
-            />
-            <img
-              alt='Logo'
-              src={toAbsoluteUrl('media/svg/brand-logos/apple-black-dark.svg')}
-              className='theme-dark-show h-15px me-3'
-            />
-            Sign in with Apple
-          </a>
-          {/* end::Google link */}
-        </div>
-        {/* end::Col */}
-      </div>
-      {/* end::Login options */}
+                {/* begin::Col */}
+                <div className='col-md-6'>
+                  {/* begin::Google link */}
+                  <a
+                    href='#'
+                    className='btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100'
+                  >
+                    <img
+                      alt='Logo'
+                      src={toAbsoluteUrl('media/svg/brand-logos/apple-black.svg')}
+                      className='theme-light-show h-15px me-3'
+                    />
+                    <img
+                      alt='Logo'
+                      src={toAbsoluteUrl('media/svg/brand-logos/apple-black-dark.svg')}
+                      className='theme-dark-show h-15px me-3'
+                    />
+                    Sign in with Apple
+                  </a>
+                  {/* end::Google link */}
+                </div>
+                {/* end::Col */}
+              </div>
+              {/* end::Login options */}
 
-      {/* begin::Separator */}
-      <div className='separator separator-content my-14'>
-        <span className='w-125px text-gray-500 fw-semibold fs-7'>Or with email</span>
-      </div>
-      {/* end::Separator */}
+              {/* begin::Separator */}
+              <div className='separator separator-content my-14'>
+                <span className='w-125px text-gray-500 fw-semibold fs-7'>Or with email</span>
+              </div>
+              {/* end::Separator */}
 
-      {formik.status ? (
-        <div className='mb-lg-15 alert alert-danger'>
-          <div className='alert-text font-weight-bold'>{formik.status}</div>
-        </div>
-      ) : (
-        <div className='mb-10 bg-light-info p-8 rounded'>
-          <div className='text-info'>
-            Use account <strong>admin@demo.com</strong> and password <strong>demo</strong> to
-            continue.
+              {formik.status ? (
+                <div className='mb-lg-15 alert alert-danger'>
+                  <div className='alert-text font-weight-bold'>{formik.status}</div>
+                </div>
+              ) : (
+                <div className='mb-10 bg-light-info p-8 rounded'>
+                  <div className='text-info'>
+                    Use account <strong>admin@demo.com</strong> and password <strong>demo</strong> to
+                    continue.
+                  </div>
+                </div>
+              )}
+
+              {/* begin::Form group */}
+              <div className='fv-row mb-8'>
+                <label className='form-label fs-6 fw-bolder text-gray-900'>Email</label>
+                <input
+                  placeholder='Email'
+                  {...formik.getFieldProps('email')}
+                  className={clsx(
+                    'form-control bg-transparent',
+                    {'is-invalid': formik.touched.email && formik.errors.email},
+                    {
+                      'is-valid': formik.touched.email && !formik.errors.email,
+                    }
+                  )}
+                  type='email'
+                  name='email'
+                  autoComplete='off'
+                />
+                {formik.touched.email && formik.errors.email && (
+                  <div className='fv-plugins-message-container'>
+                    <span role='alert'>{formik.errors.email}</span>
+                  </div>
+                )}
+              </div>
+              {/* end::Form group */}
+
+              {/* begin::Form group */}
+              <div className='fv-row mb-3'>
+                <label className='form-label fw-bolder text-gray-900 fs-6 mb-0'>Password</label>
+                <input
+                  type='password'
+                  autoComplete='off'
+                  {...formik.getFieldProps('password')}
+                  className={clsx(
+                    'form-control bg-transparent',
+                    {
+                      'is-invalid': formik.touched.password && formik.errors.password,
+                    },
+                    {
+                      'is-valid': formik.touched.password && !formik.errors.password,
+                    }
+                  )}
+                />
+                {formik.touched.password && formik.errors.password && (
+                  <div className='fv-plugins-message-container'>
+                    <div className='fv-help-block'>
+                      <span role='alert'>{formik.errors.password}</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+              {/* end::Form group */}
+
+              {/* begin::Wrapper */}
+              <div className='d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8'>
+                <div />
+
+                {/* begin::Link */}
+                <Link to='/auth/forgot-password' className='link-primary'>
+                  Forgot Password ?
+                </Link>
+                {/* end::Link */}
+              </div>
+              {/* end::Wrapper */}
+
+              {/* begin::Action */}
+              <div className='d-grid mb-10'>
+                <button
+                  type='submit'
+                  id='kt_sign_in_submit'
+                  className='btn btn-primary'
+                  disabled={formik.isSubmitting || !formik.isValid}
+                >
+                  {!loading && <span className='indicator-label'>Continue</span>}
+                  {loading && (
+                    <span className='indicator-progress' style={{display: 'block'}}>
+                      Please wait...
+                      <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
+                    </span>
+                  )}
+                </button>
+              </div>
+              {/* end::Action */}
+
+              <div className='text-gray-500 text-center fw-semibold fs-6'>
+                Not a Member yet?{' '}
+                <Link to='/auth/registration' className='link-primary'>
+                  Sign up
+                </Link>
+              </div>
+            </form>
           </div>
+          {/* end::Wrapper */}
         </div>
-      )}
+        {/* end::Form */}
 
-      {/* begin::Form group */}
-      <div className='fv-row mb-8'>
-        <label className='form-label fs-6 fw-bolder text-gray-900'>Email</label>
-        <input
-          placeholder='Email'
-          {...formik.getFieldProps('email')}
-          className={clsx(
-            'form-control bg-transparent',
-            {'is-invalid': formik.touched.email && formik.errors.email},
-            {
-              'is-valid': formik.touched.email && !formik.errors.email,
-            }
-          )}
-          type='email'
-          name='email'
-          autoComplete='off'
-        />
-        {formik.touched.email && formik.errors.email && (
-          <div className='fv-plugins-message-container'>
-            <span role='alert'>{formik.errors.email}</span>
+        {/* begin::Footer */}
+        <div className='d-flex flex-center flex-wrap px-5'>
+          {/* begin::Links */}
+          <div className='d-flex fw-semibold text-primary fs-base'>
+            <a href='#' className='px-5' target='_blank'>
+              Terms
+            </a>
+
+            <a href='#' className='px-5' target='_blank'>
+              Plans
+            </a>
+
+            <a href='#' className='px-5' target='_blank'>
+              Contact Us
+            </a>
           </div>
-        )}
+          {/* end::Links */}
+        </div>
+        {/* end::Footer */}
       </div>
-      {/* end::Form group */}
+      {/* end::Body */}
 
-      {/* begin::Form group */}
-      <div className='fv-row mb-3'>
-        <label className='form-label fw-bolder text-gray-900 fs-6 mb-0'>Password</label>
-        <input
-          type='password'
-          autoComplete='off'
-          {...formik.getFieldProps('password')}
-          className={clsx(
-            'form-control bg-transparent',
-            {
-              'is-invalid': formik.touched.password && formik.errors.password,
-            },
-            {
-              'is-valid': formik.touched.password && !formik.errors.password,
-            }
-          )}
-        />
-        {formik.touched.password && formik.errors.password && (
-          <div className='fv-plugins-message-container'>
-            <div className='fv-help-block'>
-              <span role='alert'>{formik.errors.password}</span>
-            </div>
-          </div>
-        )}
+      {/* begin::Aside */}
+      <div
+        className='d-flex bgi-size-cover bgi-position-center order-1 aside'
+        style={{backgroundImage: `url(${toAbsoluteUrl('media/misc/auth-bg.png')})`}}
+      >
+        {/* begin::Content */}
+        <div className='d-flex flex-column align-items-center px-5 px-md-15 w-100'>
+          {/* begin::Logo */}
+          <Link to='/' className='mb-12'>
+            <img alt='Logo' src={toAbsoluteUrl('media/logos/custom-1.png')} className='h-75px' />
+          </Link>
+          {/* end::Logo */}
+        </div>
+        {/* end::Content */}
       </div>
-      {/* end::Form group */}
-
-      {/* begin::Wrapper */}
-      <div className='d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8'>
-        <div />
-
-        {/* begin::Link */}
-        <Link to='/auth/forgot-password' className='link-primary'>
-          Forgot Password ?
-        </Link>
-        {/* end::Link */}
-      </div>
-      {/* end::Wrapper */}
-
-      {/* begin::Action */}
-      <div className='d-grid mb-10'>
-        <button
-          type='submit'
-          id='kt_sign_in_submit'
-          className='btn btn-primary'
-          disabled={formik.isSubmitting || !formik.isValid}
-        >
-          {!loading && <span className='indicator-label'>Continue</span>}
-          {loading && (
-            <span className='indicator-progress' style={{display: 'block'}}>
-              Please wait...
-              <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
-            </span>
-          )}
-        </button>
-      </div>
-      {/* end::Action */}
-
-      <div className='text-gray-500 text-center fw-semibold fs-6'>
-        Not a Member yet?{' '}
-        <Link to='/auth/registration' className='link-primary'>
-          Sign up
-        </Link>
-      </div>
-    </form>
+      {/* end::Aside */}
+    </div>
   )
 }
