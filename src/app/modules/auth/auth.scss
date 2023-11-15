@@ -1,0 +1,8 @@
+.aside {
+  width: 500px;
+  padding: 140px 100px;
+  
+  @media screen and (max-width: 992px) {
+    width: 100%;
+  }
+}
