@@ -11,7 +11,7 @@ import {PageDataProvider} from './core'
 import {reInitMenu} from '../helpers'
 import {ToolbarWrapper} from './components/toolbar'
 
-const MasterLayout = () => {
+const AppLayout = () => {
   const location = useLocation()
   useEffect(() => {
     reInitMenu()
@@ -52,4 +52,4 @@ const MasterLayout = () => {
   )
 }
 
-export {MasterLayout}
+export {AppLayout}

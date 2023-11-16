@@ -30,7 +30,8 @@ const AppRoutes: FC = () => {
           {currentUser ? (
             <>
               <Route path='/*' element={<PrivateRoutes />} />
-              <Route index element={<Navigate to='/dashboard' />} />
+              <Route path='internal/*' element={<PrivateRoutes />} />
+              <Route index element={<Navigate to='/internal/dashboard' />} />
             </>
           ) : (
             <>

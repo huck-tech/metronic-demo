@@ -1,7 +1,7 @@
 import {ILayout} from './_Models'
 
 export const DefaultConfig: ILayout = {
-  layoutType: 'dark-sidebar',
+  layoutType: 'light-sidebar',
   main: {
     componentName: 'main',
     type: 'default',
@@ -26,12 +26,12 @@ export const DefaultConfig: ILayout = {
         container: 'fluid',
         containerClass: 'd-flex align-items-stretch justify-content-between',
         fixed: {
-          desktop: true,
+          desktop: false,
           mobile: false,
         },
         content: 'menu',
         menu: {
-          display: true,
+          display: false,
           iconType: 'svg',
         },
       },
@@ -59,13 +59,13 @@ export const DefaultConfig: ILayout = {
           },
         },
         fixed: {
-          desktop: true,
+          desktop: false,
         },
         minimize: {
           desktop: {
-            enabled: true,
+            enabled: false,
             default: false,
-            hoverable: true,
+            hoverable: false,
           },
         },
         menu: {
