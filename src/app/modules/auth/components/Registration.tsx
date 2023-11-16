@@ -4,13 +4,13 @@ import {useState, useEffect, useRef} from 'react'
 import {Formik, Form, FormikValues} from 'formik'
 import * as Yup from 'yup'
 import clsx from 'clsx'
-// import {getUserByToken, register} from '../core/_requests'
+import {getUserByToken, register} from '../core/_requests'
 import {Link} from 'react-router-dom'
 import {Step1} from '../../../modules/wizards/components/steps/Step1'
 import {toAbsoluteUrl, KTIcon} from '../../../../_metronic/helpers'
 import {PasswordMeterComponent} from '../../../../_metronic/assets/ts/components'
 import {StepperComponent} from '../../../../_metronic/assets/ts/components'
-// import {useAuth} from '../core/Auth'
+import {useAuth} from '../core/Auth'
 
 interface ICreateAccount {
   accountType: string
@@ -64,8 +64,8 @@ const initialValues = {
 }
 
 export function Registration() {
-  // const [loading, setLoading] = useState(false)
-  // const {saveAuth, setCurrentUser} = useAuth()
+  const [loading, setLoading] = useState(false)
+  const {saveAuth, setCurrentUser} = useAuth()
   const stepperRef = useRef<HTMLDivElement | null>(null)
   const [currentSchema, setCurrentSchema] = useState(createAccountSchemas[0])
   const [initValues] = useState<ICreateAccount>(initialValues)
@@ -74,32 +74,6 @@ export function Registration() {
   const loadStepper = () => {
     setStepper(StepperComponent.createInsance(stepperRef.current as HTMLDivElement))
   }
-
-  // const formik = useFormik({
-  //   initialValues,
-  //   validationSchema: registrationSchema,
-  //   onSubmit: async (values, {setStatus, setSubmitting}) => {
-  //     setLoading(true)
-  //     try {
-  //       const {data: auth} = await register(
-  //         values.email,
-  //         values.firstname,
-  //         values.lastname,
-  //         values.password,
-  //         values.changepassword
-  //       )
-  //       saveAuth(auth)
-  //       const {data: user} = await getUserByToken(auth.api_token)
-  //       setCurrentUser(user)
-  //     } catch (error) {
-  //       console.error(error)
-  //       saveAuth(undefined)
-  //       setStatus('The registration details is incorrect')
-  //       setSubmitting(false)
-  //       setLoading(false)
-  //     }
-  //   },
-  // })
 
   useEffect(() => {
     PasswordMeterComponent.bootstrap()
@@ -123,17 +97,34 @@ export function Registration() {
     setCurrentSchema(createAccountSchemas[stepper.currentStepIndex - 1])
   }
 
-  const submitStep = (values: ICreateAccount, actions: FormikValues) => {
+  const submitStep = async (values: ICreateAccount, actions: FormikValues) => {
     if (!stepper) {
       return
     }
 
-    if (stepper.currentStepIndex !== stepper.totalStepsNumber) {
+    if (stepper.currentStepIndex !== 2) {
       stepper.goNext()
       actions.setTouched({})
     } else {
-      stepper.goto(1)
-      actions.resetForm()
+      setLoading(true)
+      try {
+        const {data: auth} = await register(
+          values.email,
+          values.firstname,
+          values.lastname,
+          values.password,
+          values.changepassword
+        )
+        saveAuth(auth)
+        const {data: user} = await getUserByToken(auth.api_token)
+        setCurrentUser(user)
+      } catch (error) {
+        console.error(error)
+        saveAuth(undefined)
+        actions.setStatus('The registration details is incorrect')
+        actions.setSubmitting(false)
+        setLoading(false)
+      }
     }
 
     console.log(values);
@@ -155,7 +146,7 @@ export function Registration() {
           <div className='p-10'>
             <Formik validationSchema={currentSchema} initialValues={initValues} onSubmit={submitStep}>
               {(formik) => (
-                <Form className='py-20 w-100 w-xl-700px px-9' noValidate id='kt_create_account_form'>
+                <Form className='py-20 w-100 w-xl-538px' noValidate id='kt_create_account_form'>
                   <div className='current' data-kt-stepper-element='content'>
                     <Step1 />
                   </div>
@@ -371,82 +362,63 @@ export function Registration() {
                           </div>
                         )}
                       </div>
-                      {/* <div className='text-center'>
-                        <button
-                          type='submit'
-                          id='kt_sign_up_submit'
-                          className='btn btn-lg btn-primary w-100 mb-5'
-                          disabled={formik.isSubmitting || !formik.isValid || !formik.values.acceptTerms}
-                        >
-                          {!loading && <span className='indicator-label'>Submit</span>}
-                          {loading && (
-                            <span className='indicator-progress' style={{display: 'block'}}>
-                              Please wait...{' '}
-                              <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
-                            </span>
-                          )}
-                        </button>
-                        <Link to='/auth/login'>
+                      {stepper?.currentStepIndex === 2 && (
+                        <div className='text-center'>
                           <button
-                            type='button'
-                            id='kt_login_signup_form_cancel_button'
-                            className='btn btn-lg btn-light-primary w-100 mb-5'
+                            type='submit'
+                            id='kt_sign_up_submit'
+                            className='btn btn-lg btn-primary w-100 mb-5'
+                            disabled={formik.isSubmitting || !formik.isValid || !formik.values.acceptTerms}
                           >
-                            Cancel
+                            {!loading && <span className='indicator-label'>Submit</span>}
+                            {loading && (
+                              <span className='indicator-progress' style={{display: 'block'}}>
+                                Please wait...{' '}
+                                <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
+                              </span>
+                            )}
                           </button>
-                        </Link>
-                      </div> */}
+                          <p className="text-gray-500 text-center fw-semibold fs-6">Already have an Account? <Link to="/auth/login">Sign in</Link></p>
+                        </div>
+                      )}
                     </div>
                   </div>
 
-                  <div className='d-flex flex-stack pt-10'>
-                    <div className='mr-2'>
-                      <button
-                        onClick={prevStep}
-                        type='button'
-                        className='btn btn-lg btn-light-primary me-3'
-                        data-kt-stepper-action='previous'
-                      >
-                        <KTIcon iconName='arrow-left' className='fs-4 me-1' />
-                        Back
-                      </button>
-                    </div>
+                  {stepper?.currentStepIndex === 1 && (
+                    <div className='d-flex flex-stack pt-10'>
+                      <div className='mr-2'>
+                        <button
+                          onClick={prevStep}
+                          type='button'
+                          className='btn btn-lg btn-light-primary me-3'
+                          data-kt-stepper-action='previous'
+                        >
+                          <KTIcon iconName='arrow-left' className='fs-4 me-1' />
+                          Back
+                        </button>
+                      </div>
 
-                    <div>
-                      <button type='submit' className='btn btn-lg btn-primary me-3'>
-                        <span className='indicator-label'>
-                          {stepper?.currentStepIndex !== ((stepper?.totalStepsNumber || 2) - 1) && 'Continue'}
-                          {stepper?.currentStepIndex === ((stepper?.totalStepsNumber || 2) - 1) && 'Submit'}
-                          <KTIcon iconName='arrow-right' className='fs-3 ms-2 me-0' />
-                        </span>
-                      </button>
+                      <div>
+                        <button type='submit' className='btn btn-lg btn-primary me-3'>
+                          <span className='indicator-label'>
+                            {stepper?.currentStepIndex !== ((stepper?.totalStepsNumber || 2) - 1) && 'Continue'}
+                            {stepper?.currentStepIndex === ((stepper?.totalStepsNumber || 2) - 1) && 'Submit'}
+                            <KTIcon iconName='arrow-right' className='fs-3 ms-2 me-0' />
+                          </span>
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </Form>
               )}
             </Formik>
-          </div>
-        </div>
-        <div className='d-flex flex-center flex-wrap px-5'>
-          <div className='d-flex fw-semibold text-primary fs-base'>
-            <a href='#' className='px-5' target='_blank'>
-              Terms
-            </a>
-
-            <a href='#' className='px-5' target='_blank'>
-              Plans
-            </a>
-
-            <a href='#' className='px-5' target='_blank'>
-              Contact Us
-            </a>
           </div>
         </div>
       </div>
 
       {/* begin::Aside */}
       <div
-        className='d-flex bgi-size-cover bgi-position-center order-1 aside'
+        className='d-flex bgi-size-cover bgi-position-center order-1 aside position-relative'
         style={{backgroundImage: `url(${toAbsoluteUrl('media/misc/auth-bg.png')})`}}
       >
         {/* begin::Content */}
@@ -590,6 +562,21 @@ export function Registration() {
           </div>
         </div>
         {/* end::Content */}
+        <div className='d-flex flex-center flex-wrap px-5 position-absolute' style={{ bottom: 35, left: '50%', transform: 'translateX(-50%)' }}>
+          <div className='d-flex fw-semibold text-primary fs-base'>
+            <a href='#' className='px-5 text-success' target='_blank'>
+              Terms
+            </a>
+
+            <a href='#' className='px-5 text-success' target='_blank'>
+              Plans
+            </a>
+
+            <a href='#' className='px-5 text-nowrap text-success' target='_blank'>
+              Contact Us
+            </a>
+          </div>
+        </div>
       </div>
       {/* end::Aside */}
     </div>

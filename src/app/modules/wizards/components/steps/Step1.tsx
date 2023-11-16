@@ -42,9 +42,9 @@ const Step1: FC = () => {
               <KTIcon iconName='address-book' className='fs-3x me-5' />
 
               <span className='d-block fw-bold text-start'>
-                <span className='text-gray-900 fw-bolder d-block fs-4 mb-2'>Personal Account</span>
+                <span className='text-gray-900 fw-bolder d-block fs-4 mb-2'>Creator</span>
                 <span className='text-gray-500 fw-bold fs-6'>
-                  If you need more info, please check it out
+                  Sign-up as a creator
                 </span>
               </span>
             </label>
@@ -65,9 +65,9 @@ const Step1: FC = () => {
               <KTIcon iconName='briefcase' className='fs-3x me-5' />
 
               <span className='d-block fw-bold text-start'>
-                <span className='text-gray-900 fw-bolder d-block fs-4 mb-2'>Corporate Account</span>
+                <span className='text-gray-900 fw-bolder d-block fs-4 mb-2'>Agency</span>
                 <span className='text-gray-500 fw-bold fs-6'>
-                  Create corporate account to mane users
+                  Sign-up as an agency
                 </span>
               </span>
             </label>

@@ -23,19 +23,19 @@
 
     --#{$prefix}stepper-label-title-opacity: 0.7;
     --#{$prefix}stepper-label-title-opacity-current: 1;
-    --#{$prefix}stepper-label-title-opacity-completed: 1;
+    --#{$prefix}stepper-label-title-opacity-completed: 0.7;
 
     --#{$prefix}stepper-label-title-color: var(--#{$prefix}gray-100);
     --#{$prefix}stepper-label-title-color-current: var(--#{$prefix}gray-100);
-    --#{$prefix}stepper-label-title-color-completed: var(--#{$prefix}text-muted);
+    --#{$prefix}stepper-label-title-color-completed: var(--#{$prefix}gray-100);
 
     --#{$prefix}stepper-label-desc-opacity: 0.5;
     --#{$prefix}stepper-label-desc-opacity-current: 0.5;
-    --#{$prefix}stepper-label-desc-opacity-completed: 1;
+    --#{$prefix}stepper-label-desc-opacity-completed: 0.5;
     
     --#{$prefix}stepper-label-desc-color: var(--#{$prefix}white);     
     --#{$prefix}stepper-label-desc-color-current: var(--#{$prefix}white);
-    --#{$prefix}stepper-label-desc-color-completed: var(--#{$prefix}gray-500);
+    --#{$prefix}stepper-label-desc-color-completed: var(--#{$prefix}gray-100);
 
     --#{$prefix}stepper-line-border: 1px dashed rgba(255, 255, 255, 0.30);
     
@@ -150,11 +150,13 @@
                 .stepper-title {
                     opacity: var(--#{$prefix}stepper-label-title-opacity-completed);
                     color: var(--#{$prefix}stepper-label-title-color-completed);
+                    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                 }
 
                 .stepper-desc {
                     opacity: var(--#{$prefix}stepper-label-desc-opacity-completed);
                     color: var(--#{$prefix}stepper-label-desc-color-completed);
+                    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                 }
             }
         }

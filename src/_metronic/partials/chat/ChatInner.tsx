@@ -99,7 +99,7 @@ const ChatInner: FC<Props> = ({isDrawer = false}) => {
                   {message.type === 'in' ? (
                     <>
                       <div className='symbol  symbol-35px symbol-circle '>
-                        <img alt='Pic' src={toAbsoluteUrl(`/media/${userInfo.avatar}`)} />
+                        <img alt='Pic' src={toAbsoluteUrl(`media/${userInfo.avatar}`)} />
                       </div>
                       <div className='ms-3'>
                         <a
@@ -123,7 +123,7 @@ const ChatInner: FC<Props> = ({isDrawer = false}) => {
                         </a>
                       </div>
                       <div className='symbol  symbol-35px symbol-circle '>
-                        <img alt='Pic' src={toAbsoluteUrl(`/media/${userInfo.avatar}`)} />
+                        <img alt='Pic' src={toAbsoluteUrl(`media/${userInfo.avatar}`)} />
                       </div>
                     </>
                   )}

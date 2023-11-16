@@ -34,7 +34,7 @@ export function Campaigns() {
       <div className='row g-6 g-xl-9'>
         <div className='col-sm-6 col-xl-4'>
           <Card5
-            image='/media/svg/brand-logos/twitch.svg'
+            image='media/svg/brand-logos/twitch.svg'
             title='Twitch Posts'
             description='$500.00'
             status='down'
@@ -46,7 +46,7 @@ export function Campaigns() {
         </div>
         <div className='col-sm-6 col-xl-4'>
           <Card5
-            image='/media/svg/brand-logos/twitter.svg'
+            image='media/svg/brand-logos/twitter.svg'
             title='Twitter Followers'
             description='807k'
             status='up'
@@ -58,7 +58,7 @@ export function Campaigns() {
         </div>
         <div className='col-sm-6 col-xl-4'>
           <Card5
-            image='/media/svg/brand-logos/spotify.svg'
+            image='media/svg/brand-logos/spotify.svg'
             title='Spotify Listeners'
             description='1,073'
             status='down'
@@ -70,7 +70,7 @@ export function Campaigns() {
         </div>
         <div className='col-sm-6 col-xl-4'>
           <Card5
-            image='/media/svg/brand-logos/pinterest-p.svg'
+            image='media/svg/brand-logos/pinterest-p.svg'
             title='Pinterest Posts'
             description='97'
             status='up'
@@ -82,7 +82,7 @@ export function Campaigns() {
         </div>
         <div className='col-sm-6 col-xl-4'>
           <Card5
-            image='/media/svg/brand-logos/github.svg'
+            image='media/svg/brand-logos/github.svg'
             title='Github Contributes'
             description='4,109'
             status='down'
@@ -94,7 +94,7 @@ export function Campaigns() {
         </div>
         <div className='col-sm-6 col-xl-4'>
           <Card5
-            image='/media/svg/brand-logos/youtube-play.svg'
+            image='media/svg/brand-logos/youtube-play.svg'
             title='Youtube Subscribers'
             description='354'
             status='up'
@@ -106,7 +106,7 @@ export function Campaigns() {
         </div>
         <div className='col-sm-6 col-xl-4'>
           <Card5
-            image='/media/svg/brand-logos/telegram.svg'
+            image='media/svg/brand-logos/telegram.svg'
             title='Telegram Posts'
             description='566'
             status='up'
@@ -118,7 +118,7 @@ export function Campaigns() {
         </div>
         <div className='col-sm-6 col-xl-4'>
           <Card5
-            image='/media/svg/brand-logos/reddit.svg'
+            image='media/svg/brand-logos/reddit.svg'
             title='Reddit Awards'
             description='2.1M'
             status='up'
